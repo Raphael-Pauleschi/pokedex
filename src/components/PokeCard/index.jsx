@@ -5,7 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
-export default function ActionAreaCard() {
+export default function PokeCard({name}) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
@@ -17,7 +17,7 @@ export default function ActionAreaCard() {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Lizard
+            {name}
           </Typography>
         </CardContent>
       </CardActionArea>
