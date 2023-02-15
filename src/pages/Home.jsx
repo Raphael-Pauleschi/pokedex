@@ -14,7 +14,7 @@ export const Home = () => {
 
     const getPokemons = () => {
         var endpoints = [];
-        for (var i = 906; i < 1009; i++) {
+        for (var i = 906; i < 910; i++) {
             endpoints.push('https://pokeapi.co/api/v2/pokemon/' + i + '/')
         }
 
@@ -38,11 +38,13 @@ export const Home = () => {
         <div>
             <Navbar pokeFilter ={pokeFilter} />
             <Container maxWidth='false'>
-                <Grid container spacing={2}>
+                <Grid container spacing={1}>
                     {pokemons.length === 0 ? <Skeletons/>: 
                     pokemons.map((pokemon, key) => (
-                        <Grid item xs={12} sm={6} md={4} lg={2} key={key}>
-                            <PokeCard name={pokemon.data.name} image={pokemon.data.sprites.front_default} types={pokemon.data.types} />
+                        <Grid item xs={12} md={6}key={key}>
+                            <PokeCard name={pokemon.data.name} image={pokemon.data.sprites.front_default} 
+                            types={pokemon.data.types} moves={pokemon.data.moves}
+                            abilities={pokemon.data.abilities}/>
                         </Grid>))}
                 </Grid>
             </Container>
