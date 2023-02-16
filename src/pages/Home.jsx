@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import PokeCard from '../components/PokeCard';
 import Skeletons from '../components/Skeletons';
-import SelectPokemon from "../components/Select/SelectPokemon";
+import PokemonInfo from "../components/PokeInfo";
 
 export const Home = () => {
     const [pokemons, setPokemons] = useState([]);
@@ -39,8 +39,8 @@ export const Home = () => {
        
         <div>
             <Navbar pokeFilter ={pokeFilter} />
-            <SelectPokemon/>
             <Container maxWidth='false'>
+                <PokemonInfo/>
                 <Grid container spacing={1}>
                     {pokemons.length === 0 ? <Skeletons/>: 
                     pokemons.map((pokemon, key) => (

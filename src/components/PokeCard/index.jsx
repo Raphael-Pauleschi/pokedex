@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
 import SelectMoves from '../Select/SelectMoves';
 import SelectAbilities from '../Select/SelectAbilities';
+import SelectPokemon from '../Select/SelectPokemon';
 
 export default function PokeCard({ pokemon }) {
   const typeHandler = () => {
@@ -41,7 +42,7 @@ export default function PokeCard({ pokemon }) {
       <CardContent sx={{ backgroundColor: "pink" }}>
         <Box display="flex" justifyContent="space-between" alignItens="center">
           <Typography gutterBottom variant="h6" component="div" >
-            {pokemon.data.name}
+          <SelectPokemon/>
           </Typography>
           {typeHandler()}
 

@@ -19,6 +19,7 @@ const SelectPokemon = () => {
     };
 
     return (
+        <div>
         <select value={selectedPokemon} onChange={handlePokemonChange}>
             <option value="">Select a Pokemon</option>
             {pokemonList.map((pokemon, index) => (
@@ -26,7 +27,9 @@ const SelectPokemon = () => {
                     {pokemon.name}
                 </option>
             ))}
+           
         </select>
+         </div>
     );
 };
 
