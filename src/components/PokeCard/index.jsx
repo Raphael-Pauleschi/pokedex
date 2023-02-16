@@ -7,41 +7,53 @@ import { Box } from '@mui/material';
 import SelectMoves from '../SelectMoves';
 import SelectAbilities from '../SelectAbilities';
 
-export default function PokeCard({ name, image, types, moves, abilities }) {
+export default function PokeCard({ pokemon }) {
   const typeHandler = () => {
-    if (types[1]) {
-      return types[0].type.name + "/" + types[1].type.name;
+    var typeText1 = "/types/" + pokemon.data.types[0].type.name + ".png";
+
+    if (pokemon.data.types[1]) {
+      var typeText2 = "/types/" + pokemon.data.types[1].type.name + ".png";
+      return (<>
+        <Box display="flex" justifyContent="space-between" alignItens="center">
+          <img src={typeText1} alt={pokemon.data.types[0].type.name} width="20%" />
+          <img src={typeText2} alt={pokemon.data.types[1].type.name} width="20%" />
+        </Box>
+      </>)
     }
-    return types[0].type.name;
+    return (<img src={typeText1} alt={pokemon.data.types[0].type.name} width="20%" />)
   }
 
   return (
     <Card sx={{ maxWidth: 545 }}>
-      <CardMedia
-        sx={{ backgroundColor: "gray" }}
-        component="img"
-        height="200"
-        image={image}
-        style={{ width: '50%', height: 'auto' }}
-        alt={name}
-      />
+      <Box sx={{ backgroundColor: "pink" }} display="flex" justifyContent="space-between" alignItens="center">
+        <CardMedia
+          sx={{ backgroundColor: "gray" }}
+          component="img"
+          height="200"
+          image={pokemon.data.sprites.front_default}
+          style={{ width: '50%', height: 'auto' }}
+          alt={pokemon.data.name}
+        />
+        <SelectAbilities abilities={pokemon.data.abilities} />
+      </Box>
+
+
       <CardContent sx={{ backgroundColor: "pink" }}>
         <Box display="flex" justifyContent="space-between" alignItens="center">
           <Typography gutterBottom variant="h6" component="div" >
-            {name}
+            {pokemon.data.name}
           </Typography>
-          <Typography gutterBottom variant="caption" component="div" >
-            {typeHandler()}
-          </Typography>
+          {typeHandler()}
+
         </Box>
-        <SelectAbilities abilities={abilities} />
+
         <Box display="flex" justifyContent="space-between" alignItens="center">
-          <SelectMoves moves={moves} />
-          <SelectMoves moves={moves} />
+          <SelectMoves moves={pokemon.data.moves} />
+          <SelectMoves moves={pokemon.data.moves} />
         </Box>
         <Box display="flex" justifyContent="space-between" alignItens="center">
-          <SelectMoves moves={moves} />
-          <SelectMoves moves={moves} />
+          <SelectMoves moves={pokemon.data.moves} />
+          <SelectMoves moves={pokemon.data.moves} />
         </Box>
       </CardContent>
     </Card>
