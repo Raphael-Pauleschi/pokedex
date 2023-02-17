@@ -41,13 +41,7 @@ export const Home = () => {
             <Navbar pokeFilter ={pokeFilter} />
             <Container maxWidth='false'>
                 <PokemonInfo/>
-                <Grid container spacing={1}>
-                    {pokemons.length === 0 ? <Skeletons/>: 
-                    pokemons.map((pokemon, key) => (
-                        <Grid item xs={12} md={6}key={key}>
-                            <PokeCard pokemon={pokemon} />
-                        </Grid>))}
-                </Grid>
+                
             </Container>
         </div>
     )
