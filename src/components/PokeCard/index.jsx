@@ -14,10 +14,9 @@ export default function PokeCard({ pokemon }) {
     if (pokemon.types[1]) {
       var typeText2 = "/types/" + pokemon.types[1].type.name + ".png";
       return (<>
-        <Box display="flex" justifyContent="space-between" alignItens="center">
           <img src={typeText1} alt={pokemon.types[0].type.name} width="20%" />
           <img src={typeText2} alt={pokemon.types[1].type.name} width="20%" />
-        </Box>
+
       </>)
     }
     return (<img src={typeText1} alt={pokemon.types[0].type.name} width="20%" />)
@@ -39,12 +38,7 @@ export default function PokeCard({ pokemon }) {
 
 
       <CardContent sx={{ backgroundColor: "pink" }}>
-        <Box display="flex" justifyContent="space-between" alignItens="center">
-          <Typography gutterBottom variant="h6" component="div" >
-          </Typography>
           {typeHandler()}
-
-        </Box>
 
         <Box display="flex" justifyContent="space-between" alignItens="center">
           <SelectMoves moves={pokemon.moves} />

@@ -9,6 +9,7 @@ const PokemonInfo = ({ name = 'Unknown', types = [], abilities = [], moves = [] 
 
   const handlePokemonNameChange = (event) => {
     setPokemonName(event.target.value);
+    setPokemonInfo(null);
   };
 
   const handleFormSubmit = async (event) => {
