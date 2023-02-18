@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
 import SelectMoves from '../Select/SelectMoves';
 import SelectAbilities from '../Select/SelectAbilities';
+import SelectTeraType from '../Select/SelectTeraType';
 
 export default function PokeCard({ pokemon }) {
   const typeHandler = () => {
@@ -39,7 +40,7 @@ export default function PokeCard({ pokemon }) {
 
       <CardContent sx={{ backgroundColor: "pink" }}>
           {typeHandler()}
-
+    <SelectTeraType/>
         <Box display="flex" justifyContent="space-between" alignItens="center">
           <SelectMoves moves={pokemon.moves} />
           <SelectMoves moves={pokemon.moves} />

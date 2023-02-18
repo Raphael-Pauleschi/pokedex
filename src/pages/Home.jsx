@@ -11,6 +11,10 @@ export const Home = () => {
             <Container maxWidth='false'>
                 <PokemonInfo/>
                 <PokemonInfo/>
+                <PokemonInfo/>
+                <PokemonInfo/>
+                <PokemonInfo/>
+                <PokemonInfo/>
                 
             </Container>
         </div>

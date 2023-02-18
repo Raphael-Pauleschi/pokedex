@@ -25,6 +25,7 @@ export default function SelectMoves({moves}) {
         >
           {moves.map((option) => (
             <option key={option.move.name} value={option.move.name}>
+              <option value=""></option>
               {option.move.name}
             </option>
           ))}
