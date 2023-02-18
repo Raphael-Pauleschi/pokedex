@@ -32,8 +32,8 @@ const Select = ({dataList, data }) => {
                 >
                     <option value = ""></option>
                     {dataList.map((index) => (
-                        <option key={index} value={index[data].url}>
-                            {index[data].name}
+                        <option key={index} value={data === "type" || data === "tera-type" ? index.url : index[data].url}>
+                            {data === "type" || data === "tera-type" ? index.name : index[data].name}
                             </option>
                             
                     ))}
