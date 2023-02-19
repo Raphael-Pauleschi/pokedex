@@ -1,52 +1,24 @@
-import { Grid} from "@mui/material";
 import { Container } from "@mui/system";
-import axios from "axios";
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Navbar from '../components/Navbar';
-import PokeCard from '../components/PokeCard';
-import Skeletons from '../components/Skeletons';
+import PokemonInfo from "../components/PokeInfo";
+import getType from "../script/getType";
+import getItems from "../script/getItems";
 
 export const Home = () => {
-    const [pokemons, setPokemons] = useState([]);
-    useEffect(() => {
-        getPokemons();
-    }, []);
+    const typeList = getType();
+    const itemsList = getItems(); 
 
-    const getPokemons = () => {
-        var endpoints = [];
-        for (var i = 906; i < 1009; i++) {
-            endpoints.push('https://pokeapi.co/api/v2/pokemon/' + i + '/')
-        }
+    console.log("OPA:",itemsList);
 
-        var response = axios.all(endpoints.map((endpoint) => axios.get(endpoint)))
-            .then((res) => setPokemons(res));
-        return response;
-    }
-
-    const pokeFilter = (name) => {
-        var filteredPokemons = []
-        if(name === "")
-            getPokemons()
-        for (var i in pokemons) {
-            if (pokemons[i].data.name.includes(name)) {
-                filteredPokemons.push(pokemons[i]);
-            }
-        }
-        setPokemons(filteredPokemons)
-    };
     return (
+       
         <div>
-            <Navbar pokeFilter ={pokeFilter} />
+            <Navbar />
             <Container maxWidth='false'>
-                <Grid container spacing={2}>
-                    {pokemons.length === 0 ? <Skeletons/>: 
-                    pokemons.map((pokemon, key) => (
-                        <Grid item xs={12} sm={6} md={4} lg={2} key={key}>
-                            <PokeCard name={pokemon.data.name} image={pokemon.data.sprites.front_default} types={pokemon.data.types} />
-                        </Grid>))}
-                </Grid>
+                <PokemonInfo typeList={typeList} itemsList={itemsList}/>
+                
             </Container>
-
         </div>
     )
 }

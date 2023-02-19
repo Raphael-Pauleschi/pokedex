@@ -1,134 +1,52 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
 
-const currencies = [
-  {
-    value: 'USD',
-    label: '$',
-  },
-  {
-    value: 'EUR',
-    label: '€',
-  },
-  {
-    value: 'BTC',
-    label: '฿',
-  },
-  {
-    value: 'JPY',
-    label: '¥',
-  },
-];
+const Select = ({dataList, data, referenceComplete }) => {
+   const [selected, setSelected] = useState('');
 
-export default function SelectTextFields() {
-  return (
-    <Box
-      component="form"
-      sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <div>
-        <TextField
-          id="outlined-select-currency"
-          select
-          label="Select"
-          defaultValue="EUR"
-          helperText="Please select your currency"
+   const handleChange = (event) =>{
+    setSelected (event.target.value);
+   }
+
+   if(data==="item"){
+    console.log("HEY",dataList);
+   }
+    return (
+        <Box 
+        component="form"
+        sx={{
+            '& .MuiTextField-root': {m:1, width: '25ch'},
+        }}
+        noValidatea
+        utoComplete="off"
         >
-          {currencies.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        <TextField
-          id="outlined-select-currency-native"
-          select
-          label="Native select"
-          defaultValue="EUR"
-          SelectProps={{
-            native: true,
-          }}
-          helperText="Please select your currency"
-        >
-          {currencies.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </TextField>
-      </div>
-      <div>
-        <TextField
-          id="filled-select-currency"
-          select
-          label="Select"
-          defaultValue="EUR"
-          helperText="Please select your currency"
-          variant="filled"
-        >
-          {currencies.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        <TextField
-          id="filled-select-currency-native"
-          select
-          label="Native select"
-          defaultValue="EUR"
-          SelectProps={{
-            native: true,
-          }}
-          helperText="Please select your currency"
-          variant="filled"
-        >
-          {currencies.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </TextField>
-      </div>
-      <div>
-        <TextField
-          id="standard-select-currency"
-          select
-          label="Select"
-          defaultValue="EUR"
-          helperText="Please select your currency"
-          variant="standard"
-        >
-          {currencies.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        <TextField
-          id="standard-select-currency-native"
-          select
-          label="Native select"
-          defaultValue="EUR"
-          SelectProps={{
-            native: true,
-          }}
-          helperText="Please select your currency"
-          variant="standard"
-        >
-          {currencies.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </TextField>
-      </div>
-    </Box>
-  );
+              
+                <TextField
+                id="outlined-select-currency-native"
+                select
+                label = {data}
+                value = {selected}
+                onChange = {handleChange}
+                defaultValue=" "
+                SelectProps={{
+                    native:true,
+                }}
+                >
+                    <option value = ""></option>
+                    {dataList.map((index) => (
+                        <option key={index} value={referenceComplete === 'true' ? index.url : index[data].url}>
+                            {referenceComplete === 'true' ? index.name : index[data].name}
+                            </option>
+                            
+                    ))}
+                   
+                </TextField>
+
+
+        </Box>
+
+    )
 }
+
+export default Select;
