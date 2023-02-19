@@ -5,7 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import { Box } from '@mui/material';
 import Select from '../Select';
 
-export default function PokeCard({ pokemon, typeList }) {
+export default function PokeCard({ pokemon, typeList, itemsList }) {
   const typeHandler = () => {
     var typeText1 = "/types/" + pokemon.types[0].type.name + ".png";
 
@@ -44,8 +44,9 @@ export default function PokeCard({ pokemon, typeList }) {
           alt={pokemon.name}
         />
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: "20px"}}>
-          <Select dataList={pokemon.abilities} data="ability" />
-          <Select dataList={typeList} data="tera-type" />
+          <Select dataList={pokemon.abilities} data="ability" referenceComplete='false'/>
+          <Select dataList={typeList} data="tera-type" referenceComplete='true'/>
+          <Select dataList={itemsList} data="item" referenceComplete='true'/>
         </Box>
       </Box>
 
@@ -53,12 +54,12 @@ export default function PokeCard({ pokemon, typeList }) {
       <CardContent sx={{ backgroundColor: "pink" }}>
         {typeHandler()}
         <Box display="flex" justifyContent="space-between" alignItens="center">
-          <Select dataList={pokemon.moves} data="move" />
-          <Select dataList={pokemon.moves} data="move" />
+          <Select dataList={pokemon.moves} data="move" referenceComplete='false' />
+          <Select dataList={pokemon.moves} data="move" referenceComplete='false'/>
         </Box>
         <Box display="flex" justifyContent="space-between" alignItens="center">
-          <Select dataList={pokemon.moves} data="move" />
-          <Select dataList={pokemon.moves} data="move" />
+          <Select dataList={pokemon.moves} data="move" referenceComplete='false'/>
+          <Select dataList={pokemon.moves} data="move" referenceComplete='false'/>
         </Box>
       </CardContent>
     </Card>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import PokeCard from '../PokeCard';
 
-const PokemonInfo = ({ typeList}) => {
+const PokemonInfo = ({ typeList, itemsList}) => {
   const [pokemonName, setPokemonName] = useState('');
   const [pokemonInfo, setPokemonInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +32,7 @@ const PokemonInfo = ({ typeList}) => {
       </form>
 
       {isLoading && <div>Loading...</div>}
-      {pokemonInfo &&  <PokeCard pokemon={pokemonInfo} typeList={typeList}/>
+      {pokemonInfo &&  <PokeCard pokemon={pokemonInfo} typeList={typeList} itemsList={itemsList}/>
       }
     </div>
   );

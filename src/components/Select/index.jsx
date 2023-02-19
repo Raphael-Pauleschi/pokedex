@@ -2,13 +2,16 @@ import React, {useState} from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-const Select = ({dataList, data }) => {
+const Select = ({dataList, data, referenceComplete }) => {
    const [selected, setSelected] = useState('');
 
    const handleChange = (event) =>{
     setSelected (event.target.value);
    }
-    console.log(dataList.map((index)=> index));
+
+   if(data==="item"){
+    console.log("HEY",dataList);
+   }
     return (
         <Box 
         component="form"
@@ -32,8 +35,8 @@ const Select = ({dataList, data }) => {
                 >
                     <option value = ""></option>
                     {dataList.map((index) => (
-                        <option key={index} value={data === "type" || data === "tera-type" ? index.url : index[data].url}>
-                            {data === "type" || data === "tera-type" ? index.name : index[data].name}
+                        <option key={index} value={referenceComplete === 'true' ? index.url : index[data].url}>
+                            {referenceComplete === 'true' ? index.name : index[data].name}
                             </option>
                             
                     ))}
