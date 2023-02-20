@@ -1,49 +1,58 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import Itemdisplay from '../ItemDisplay';
 
-const Select = ({dataList, data, referenceComplete }) => {
-   const [selected, setSelected] = useState('');
+const Select = ({ dataList, data, referenceComplete }) => {
+    const [selected, setSelected] = useState('');
 
-   const handleChange = (event) =>{
-    setSelected (event.target.value);
-   }
+    const handleChange = (event) => {
+        setSelected(event.target.value);
+    }
 
-   if(data==="item"){
-    console.log("HEY",dataList);
-   }
+    const formatString = (textReceived) => {
+        textReceived = textReceived.charAt(0)
+            .toUpperCase() 
+            + textReceived.slice(1);
+        textReceived = textReceived.replace(/-/g, " ");     
+        return textReceived.replace("held", " ");
+    }
+
+    if (data === "item") {
+        console.log("HEY", dataList);
+    }
     return (
-        <Box 
-        component="form"
-        sx={{
-            '& .MuiTextField-root': {m:1, width: '25ch'},
-        }}
-        noValidatea
-        utoComplete="off"
+        <Box
+            component="form"
+            sx={{
+                '& .MuiTextField-root': { m: 1, width: '25ch' },
+            }}
+            noValidatea
+            utoComplete="off"
         >
-              
-                <TextField
+
+            <TextField
                 id="outlined-select-currency-native"
                 select
-                label = {data}
-                value = {selected}
-                onChange = {handleChange}
+                label={data}
+                value={selected}
+                onChange={handleChange}
                 defaultValue=" "
                 SelectProps={{
-                    native:true,
+                    native: true,
                 }}
-                >
-                    <option value = ""></option>
-                    {dataList.map((index) => (
-                        <option key={index} value={referenceComplete === 'true' ? index.url : index[data].url}>
-                            {referenceComplete === 'true' ? index.name : index[data].name}
-                            </option>
-                            
-                    ))}
-                   
-                </TextField>
+            >
+                <option value=""></option>
+                {dataList.map((index) => (
+                    <option key={index} value={referenceComplete === 'true' ? index.url : index[data].url}>
+                        {referenceComplete === 'true' ? formatString(index.name) : formatString(index[data].name)}
+                    </option>
 
+                ))}
 
+            </TextField>
+
+            {data === 'item' ? <Itemdisplay selected={selected} /> : null}
         </Box>
 
     )
