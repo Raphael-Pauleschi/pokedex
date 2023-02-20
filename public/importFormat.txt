@@ -1,0 +1,10 @@
+Hammer (Tinkaton) (F) @ Leftovers  
+Ability: Mold Breaker  
+Tera Type: Fairy  
+EVs: 28 HP / 96 Atk / 96 Def / 96 SpA / 96 SpD / 96 Spe  
+Modest Nature  
+IVs: 30 HP / 27 Atk / 27 Def / 25 SpA / 28 SpD / 28 Spe  
+- Gigaton Hammer  
+- Knock Off  
+- Stealth Rock  
+- Swords Dance

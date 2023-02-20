@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import PokeCard from '../PokeCard';
+import { TextField } from '@mui/material';
 
 const PokemonInfo = ({ typeList, itemsList}) => {
   const [pokemonName, setPokemonName] = useState('');
@@ -27,12 +28,18 @@ const PokemonInfo = ({ typeList, itemsList}) => {
   return (
     <div>
       <form onSubmit={handleFormSubmit}>
-        <input type="text" value={pokemonName} onChange={handlePokemonNameChange} />
-        <button type="submit">Submit</button>
+      <TextField id="outlined-basic" 
+      label="Pokemon" 
+      variant="outlined" 
+      value={pokemonName} 
+      onChange={handlePokemonNameChange}
+      style={{marginLeft: "60px"}}
+      />
+       
       </form>
 
       {isLoading && <div>Loading...</div>}
-      {pokemonInfo &&  <PokeCard pokemon={pokemonInfo} typeList={typeList} itemsList={itemsList}/>
+      {pokemonInfo &&  <PokeCard pokemon={pokemonInfo} typeList={typeList} itemsList={itemsList} />
       }
     </div>
   );

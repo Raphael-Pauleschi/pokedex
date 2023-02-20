@@ -29,7 +29,7 @@ export default function PokeCard({ pokemon, typeList, itemsList }) {
     }
   */
   return (
-    <Card sx={{ maxWidth: 545 }}>
+    <Card sx={{ maxWidth: 545  }} style={{marginLeft: "60px", marginTop:"20px"}}>
       <Box sx={{ backgroundColor: "pink" }}
         display="flex"
         justifyContent="space-between"
