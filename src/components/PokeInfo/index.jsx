@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import PokeCard from '../PokeCard';
 import { TextField } from '@mui/material';
+import MoreDetails from '../MoreDetails';
 
 const PokemonInfo = ({ typeList, itemsList}) => {
   const [pokemonName, setPokemonName] = useState('');
@@ -39,7 +40,9 @@ const PokemonInfo = ({ typeList, itemsList}) => {
       </form>
 
       {isLoading && <div>Loading...</div>}
-      {pokemonInfo &&  <PokeCard pokemon={pokemonInfo} typeList={typeList} itemsList={itemsList} />
+      {pokemonInfo &&  
+        <MoreDetails pokemon={pokemonInfo} typeList={typeList} itemsList={itemsList}/>
+        
       }
     </div>
   );

@@ -18,9 +18,6 @@ const Select = ({ dataList, data, referenceComplete }) => {
         return textReceived.replace("held", " ");
     }
 
-    if (data === "item") {
-        console.log("HEY", dataList);
-    }
     return (
         <Box
             component="form"

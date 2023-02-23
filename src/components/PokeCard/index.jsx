@@ -19,7 +19,7 @@ export default function PokeCard({ pokemon, typeList, itemsList }) {
     }
     return (<img style={{ marginLeft: '80px' }} src={typeText1} alt={pokemon.types[0].type.name} width="20%" />)
   }
-  console.log(pokemon);
+
   /*
     const ablityHandler = () => {
       if(pokemon.abilities[0].name === pokemon.abilities[1].name)
@@ -29,7 +29,10 @@ export default function PokeCard({ pokemon, typeList, itemsList }) {
     }
   */
   return (
-    <Card sx={{ maxWidth: 545  }} style={{marginLeft: "60px", marginTop:"20px"}}>
+    <Card 
+    sx={{ maxWidth: 545  }} 
+    style={{marginLeft: "60px", marginTop:"20px"}}
+    >
       <Box sx={{ backgroundColor: "pink" }}
         display="flex"
         justifyContent="space-between"
