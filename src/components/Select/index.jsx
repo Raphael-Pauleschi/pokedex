@@ -24,8 +24,8 @@ const Select = ({ dataList, data, referenceComplete }) => {
             sx={{
                 '& .MuiTextField-root': { m: 1, width: '25ch' },
             }}
-            noValidatea
-            utoComplete="off"
+            noValidate
+            utocomplete="off"
         >
 
             <TextField
@@ -34,7 +34,6 @@ const Select = ({ dataList, data, referenceComplete }) => {
                 label={data}
                 value={selected}
                 onChange={handleChange}
-                defaultValue=" "
                 SelectProps={{
                     native: true,
                 }}

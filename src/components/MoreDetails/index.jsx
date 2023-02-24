@@ -8,24 +8,39 @@ import { TextField } from '@mui/material';
 
 export default function MoreDetails({ pokemon, typeList, itemsList }) {
   const [Iv, setIv] = useState([31, 31, 31, 31, 31, 31]);
-
   const [Ev, setEv] = useState([0, 0, 0, 0, 0, 0]);
 
   const handleStatChange = (event, typeValue, id) => {
-    if (typeValue === "Iv")
-      setIv[id](event.target.value); 
-    if(typeValue === "Ev")
-    setEv[id](event.target.value); 
+    if (typeValue === "Iv") {
+      const newIv = [...Iv];
+      newIv[id] = (event.target.value);
+      setIv(newIv);
+      console.log("Change: ", Iv);
+    }
+    if (typeValue === "Ev") {
+      const newEv = [...Ev];
+      newEv[id] = (event.target.value);
+      setEv(newEv);
+    }
   };
 
-  const CalculateStat = (id, baseStat) =>{
-
+  const CalculateStat = (id, baseStat) => {
+    //For the time being, the level is 100
+    var trueStat = (2 * baseStat + Iv[id] + (Ev[id] / 4))
     //The Hp stat is calculated different
-    if(id===0){
-      
-    }else{
-      
+    if (id === 0) {
+      //The pokemon Shedinja will always have 1 HP
+      if (pokemon === "shedinja")
+        trueStat = 1;
+      else
+        trueStat += 110;
+
+    } else {
+      trueStat += 5;
+      //todo - Natures
     }
+
+    return trueStat;
   }
 
   const typeHandler = () => {
@@ -51,7 +66,7 @@ export default function MoreDetails({ pokemon, typeList, itemsList }) {
         display="flex"
         justifyContent="space-between"
         flexDirection='row'
-        alignItens="center">
+        alignItems="center">
         <CardMedia
           sx={{ backgroundColor: '#F0DADA', borderRadius: "50%" }}
           component="img"
@@ -77,10 +92,10 @@ export default function MoreDetails({ pokemon, typeList, itemsList }) {
       <CardContent sx={{ backgroundColor: "pink" }}>
         {typeHandler()}
         <h2>Stats:</h2>
-        <Grid container align="center" spacing={2}>
-          {pokemon.stats.map((stat) => (
+        <Grid container alignItems="center" spacing={2}>
+          {pokemon.stats.map((stat, index) => (
 
-            <Grid item xs={8} key={stat.stat.name}>{stat.stat.name} {stat.base_stat}
+            <Grid item xs={8} key={index}> {stat.base_stat}
               <TextField
                 id="outlined-number"
                 label="EV"
@@ -88,6 +103,7 @@ export default function MoreDetails({ pokemon, typeList, itemsList }) {
                 size="small"
                 defaultValue={0}
                 inputProps={{ max: 252, min: 0 }}
+                onChange = {(event) => handleStatChange(event, "EV", index)}
                 sx={{ width: '70px' }}
                 InputLabelProps={{
                   shrink: true,
@@ -101,10 +117,12 @@ export default function MoreDetails({ pokemon, typeList, itemsList }) {
                 defaultValue={31}
                 sx={{ width: '70px' }}
                 inputProps={{ max: 31, min: 0 }}
+                onChange = {(event) => handleStatChange(event, "IV", index)}
                 InputLabelProps={{
                   shrink: true,
                 }}
               />
+              {CalculateStat(index, stat.base_stat)}
             </Grid>
 
 
