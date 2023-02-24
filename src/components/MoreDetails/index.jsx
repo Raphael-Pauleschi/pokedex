@@ -9,18 +9,24 @@ import { TextField } from '@mui/material';
 export default function MoreDetails({ pokemon, typeList, itemsList }) {
   const [Iv, setIv] = useState([31, 31, 31, 31, 31, 31]);
   const [Ev, setEv] = useState([0, 0, 0, 0, 0, 0]);
+  const statname = ["HP ","Atk","Def","SpA","SpD","Spe"]
 
   const handleStatChange = (event, typeValue, id) => {
-    if (typeValue === "Iv") {
-      const newIv = [...Iv];
-      newIv[id] = (event.target.value);
-      setIv(newIv);
-      console.log("Change: ", Iv);
-    }
-    if (typeValue === "Ev") {
-      const newEv = [...Ev];
-      newEv[id] = (event.target.value);
-      setEv(newEv);
+    const value =parseInt(event.target.value) 
+    || (typeValue === "IV" ? 31 : 0)
+    || (typeValue === "EV" ? 252 :0);
+    if (typeValue === "IV") {
+      console.log("A",Iv);
+      setIv(prevIv => {
+        const newIv = [...prevIv];
+        newIv[id] = value;
+        return newIv});
+      }
+    if (typeValue === "EV") {
+      setEv(prevEv => {
+        const newEv = [...prevEv];
+        newEv[id] = parseInt(event.target.value);
+        return newEv});
     }
   };
 
@@ -95,7 +101,7 @@ export default function MoreDetails({ pokemon, typeList, itemsList }) {
         <Grid container alignItems="center" spacing={2}>
           {pokemon.stats.map((stat, index) => (
 
-            <Grid item xs={8} key={index}> {stat.base_stat}
+            <Grid item xs={8} key={index}> {statname[index]}&nbsp; {stat.base_stat} &nbsp;
               <TextField
                 id="outlined-number"
                 label="EV"
@@ -108,7 +114,7 @@ export default function MoreDetails({ pokemon, typeList, itemsList }) {
                 InputLabelProps={{
                   shrink: true,
                 }}
-              />
+              /> &nbsp;
               <TextField
                 id="outlined-number"
                 label="IV"
@@ -121,7 +127,7 @@ export default function MoreDetails({ pokemon, typeList, itemsList }) {
                 InputLabelProps={{
                   shrink: true,
                 }}
-              />
+              /> &nbsp;
               {CalculateStat(index, stat.base_stat)}
             </Grid>
 
