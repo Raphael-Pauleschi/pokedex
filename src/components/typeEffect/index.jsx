@@ -106,18 +106,24 @@ export default function TypeEffect({ type1, type2, teraType }) {
         }
     }, [infoType1, infoType2]);
 
+    function typeShow(typeArray) {
+        return typeArray.map((weak) => {
+            let typeName = `/types/${weak}.png`;
+            return <img src={typeName} alt={weak} width="100px" />;
+        });
+    }
+
     return (
         <Card
             sx={{ maxWidth: 1000 }}
             style={{ marginLeft: '60px', marginTop: '30px' }}
         >
             <CardContent sx={{ backgroundColor: 'pink' }}>
-                <div>2X from: {JSON.stringify(doubleDamageFrom)}</div>
-                <div>1/2X from: {JSON.stringify(halfDamageFrom)}</div>
-                {quadrupleDamageFrom && <div>4X from: {JSON.stringify(quadrupleDamageFrom)}</div>}
-                {quarterDamageFrom && <div>1/4X from: {JSON.stringify(quarterDamageFrom)}</div>}
-                {noDamageFrom && <div>0X from: {JSON.stringify(noDamageFrom)}</div>}
-
+                <div>4X: {typeShow(quadrupleDamageFrom)}</div>
+                <div>1/4X: {typeShow(quarterDamageFrom)}</div>
+                <div>0X: {typeShow(noDamageFrom)}</div>
+                <div>2X: {typeShow(doubleDamageFrom)}</div>
+                <div>1/2: {typeShow(halfDamageFrom)}</div>
             </CardContent>
         </Card>
     );
