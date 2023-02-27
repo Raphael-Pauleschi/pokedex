@@ -6,6 +6,8 @@ import { Box, Grid } from '@mui/material';
 import Select from '../Select';
 import { TextField } from '@mui/material';
 import TypeEffect from '../typeEffect';
+import Divider from '@mui/material/Divider';
+import Tooltip from '@mui/material/Tooltip';
 
 export default function MoreDetails({ pokemon, typeList, itemsList }) {
   const [Iv, setIv] = useState([31, 31, 31, 31, 31, 31]);
@@ -63,13 +65,31 @@ export default function MoreDetails({ pokemon, typeList, itemsList }) {
 
     if (pokemon.types[1]) {
       var typeText2 = "/types/" + pokemon.types[1].type.name + ".png";
+      console.log(pokemon.types[1].type.name);
       return (<>
-        <img style={{ marginLeft: '40px' }} src={typeText1} alt={pokemon.types[0].type.name} width="10%" />
-        <img src={typeText2} alt={pokemon.types[1].type.name} width="10%" />
+        <Tooltip 
+        disableFocusListener
+         disableTouchListener 
+        title={<TypeEffect type1={pokemon.types[0].type.name} type2={pokemon.types[1].type.name} />}>
+          <img style={{ marginLeft: '40px' }} src={typeText1} alt={pokemon.types[0].type.name} width="10%" />
+        </Tooltip>
+        <Tooltip 
+        disableFocusListener
+         disableTouchListener 
+        title={<TypeEffect type1={pokemon.types[0].type.name} type2={pokemon.types[1].type.name} />}>
+          <img src={typeText2} alt={pokemon.types[1].type.name} width="10%" />
+        </Tooltip>
 
       </>)
     }
-    return (<img style={{ marginLeft: '80px' }} src={typeText1} alt={pokemon.types[0].type.name} width="10%" />)
+
+    return (
+    <Tooltip 
+    disableFocusListener 
+    disableTouchListener 
+    title={<TypeEffect type1={pokemon.types[0].type.name}/>}>
+      <img style={{ marginLeft: '80px' }} src={typeText1} alt={pokemon.types[0].type.name} width="10%" />
+    </Tooltip>)
   }
 
   return (
@@ -107,6 +127,8 @@ export default function MoreDetails({ pokemon, typeList, itemsList }) {
 
         <CardContent sx={{ backgroundColor: "pink" }}>
           {typeHandler()}
+
+          <Divider />
           <h2>Stats:</h2>
           <Grid container alignItems="center" spacing={2}>
             {pokemon.stats.map((stat, index) => (
@@ -146,10 +168,6 @@ export default function MoreDetails({ pokemon, typeList, itemsList }) {
           </Grid>
         </CardContent>
       </Card>
-
-      {pokemon.types[1] ?
-        <TypeEffect type1={pokemon.types[0].type.name} type2={pokemon.types[1].type.name} />
-        : <TypeEffect type1={pokemon.types[0].type.name} />};
     </div>
   );
 }

@@ -112,7 +112,7 @@ export default function TypeEffect({ type1, type2 }) {
                 };
         
                 fetchTypeInfo();
-            }, [type1, type2]);
+            }, [type1]);
         
             useEffect(() => {
                 const damageHandle = () => {
@@ -141,17 +141,12 @@ export default function TypeEffect({ type1, type2 }) {
     }
 
     return (
-        <Card
-            sx={{ maxWidth: 1000 }}
-            style={{ marginLeft: '60px', marginTop: '30px' }}
-        >
-            <CardContent sx={{ backgroundColor: 'pink' }}>
+        <>
                 <div>4X: {typeShow(quadrupleDamageFrom)}</div>
                 <div>1/4X: {typeShow(quarterDamageFrom)}</div>
                 <div>0X: {typeShow(noDamageFrom)}</div>
                 <div>2X: {typeShow(doubleDamageFrom)}</div>
                 <div>1/2: {typeShow(halfDamageFrom)}</div>
-            </CardContent>
-        </Card>
+          </>
     );
 }
