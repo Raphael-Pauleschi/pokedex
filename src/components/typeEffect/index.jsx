@@ -36,6 +36,7 @@ export default function TypeEffect({ type1, type2 }) {
 
     useEffect(() => {
         const damageHandle = () => {
+            console.log(type1);
             const newDoubleDamageFromType1 = infoType1.double_damage_from.map(relation => relation.name);
             const newHalfDamageFromType1 = infoType1.half_damage_from.map(relation => relation.name);
             const newNoDamageFromType1 = infoType1.no_damage_from.map(relation => relation.name);
@@ -48,6 +49,7 @@ export default function TypeEffect({ type1, type2 }) {
                     relation1 => newDoubleDamageFromType2.some(relation2 => relation1 === relation2)
                 );
                 setQuadrupleDamageFrom(newQuadrupleDamageFrom);
+                console.log(quadrupleDamageFrom);
 
                 setDoubleDamageFrom(
                     newDoubleDamageFromType1.filter(
@@ -140,11 +142,11 @@ export default function TypeEffect({ type1, type2 }) {
 
     return (
         <>
-              {(!quadrupleDamageFrom) &&  (<div>4X: <p>{typeShow(quadrupleDamageFrom)}</p></div>)}
-               {(!quarterDamageFrom) && <div>1/4X: <p>{typeShow(quarterDamageFrom)}</p></div>}
-                {(!noDamageFrom) && <div>0X: <p>{typeShow(noDamageFrom)}</p></div>}
-                <div>2X: <p>{typeShow(doubleDamageFrom)}</p></div>
-                <div>1/2: <p>{typeShow(halfDamageFrom)}</p></div>
+                <div>4X: {typeShow(quadrupleDamageFrom)}</div>
+                <div>1/4X: {typeShow(quarterDamageFrom)}</div>
+                <div>0X: {typeShow(noDamageFrom)}</div>
+                <div>2X: {typeShow(doubleDamageFrom)}</div>
+                <div>1/2: {typeShow(halfDamageFrom)}</div>
           </>
     );
 }
