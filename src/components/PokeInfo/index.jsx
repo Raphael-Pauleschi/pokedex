@@ -4,7 +4,7 @@ import PokeCard from '../PokeCard';
 import { TextField } from '@mui/material';
 import MoreDetails from '../MoreDetails';
 
-const PokemonInfo = ({ typeList, itemsList}) => {
+const PokemonInfo = ({ typeList, itemsList }) => {
   const [pokemonName, setPokemonName] = useState('');
   const [pokemonInfo, setPokemonInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -25,27 +25,38 @@ const PokemonInfo = ({ typeList, itemsList}) => {
     }
     setIsLoading(false);
   };
+  const [showMoreDetails, setShowMoreDetails] = useState(false);
 
   return (
-    <div>
+    <div className="App">
       <form onSubmit={handleFormSubmit}>
-      <TextField id="outlined-basic" 
-      label="Pokemon" 
-      variant="outlined" 
-      value={pokemonName} 
-      onChange={handlePokemonNameChange}
-      style={{marginLeft: "60px"}}
-      />
-       
-      </form>
+        <TextField id="outlined-basic"
+          label="Pokemon"
+          variant="outlined"
+          value={pokemonName}
+          onChange={handlePokemonNameChange}
+          style={{ marginLeft: "60px" }}
+        />
 
+      </form>
       {isLoading && <div>Loading...</div>}
-      {pokemonInfo &&  
-        <MoreDetails pokemon={pokemonInfo} typeList={typeList} itemsList={itemsList}/>
-        
-      }
+      {pokemonInfo && 
+  <>
+    <button onClick={() => setShowMoreDetails(!showMoreDetails)}>
+      {showMoreDetails ? "Show less details" : "Show more details"}
+    </button>
+
+    {showMoreDetails ? (
+      <MoreDetails pokemon={pokemonInfo} typeList={typeList} itemsList={itemsList} />
+    ) : (
+      <PokeCard pokemon={pokemonInfo} typeList={typeList} itemsList={itemsList} />
+    )}
+  </>
+}
+
     </div>
   );
+
 };
 
 export default PokemonInfo;

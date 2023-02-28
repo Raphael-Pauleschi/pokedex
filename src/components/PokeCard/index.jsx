@@ -17,14 +17,6 @@ export default function PokeCard({ pokemon, typeList, itemsList }) {
     return (<img style={{ marginLeft: '80px' }} src={typeText1} alt={pokemon.types[0].type.name} width="20%" />)
   }
 
-  /*
-    const ablityHandler = () => {
-      if(pokemon.abilities[0].name === pokemon.abilities[1].name)
-      return (<Select dataList={pokemon.abilities[0]} data="ability" />)
-      else
-      return (<Select dataList={pokemon.abilities} data="ability" />)
-    }
-  */
   return (
     <Card 
     sx={{ maxWidth: 545  }} 
