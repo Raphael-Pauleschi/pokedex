@@ -9,6 +9,7 @@ import TypeEffect from '../typeEffect';
 import Divider from '@mui/material/Divider';
 import Tooltip from '@mui/material/Tooltip';
 
+
 export default function MoreDetails({ pokemon, typeList, itemsList }) {
   const [Iv, setIv] = useState([31, 31, 31, 31, 31, 31]);
   const [Ev, setEv] = useState([0, 0, 0, 0, 0, 0]);
@@ -67,29 +68,29 @@ export default function MoreDetails({ pokemon, typeList, itemsList }) {
       var typeText2 = "/types/" + pokemon.types[1].type.name + ".png";
       console.log(pokemon.types[1].type.name);
       return (<>
-        <Tooltip 
-        disableFocusListener
-         disableTouchListener 
-        title={<TypeEffect type1={pokemon.types[0].type.name} type2={pokemon.types[1].type.name} />}>
-          <img style={{ marginLeft: '40px' }} src={typeText1} alt={pokemon.types[0].type.name} width="10%" />
+        <Tooltip
+          disableFocusListener
+          disableTouchListener
+          title={<TypeEffect type1={pokemon.types[0].type.name} type2={pokemon.types[1].type.name} />}>
+          <img style={{ marginLeft: '60px' }} src={typeText1} alt={pokemon.types[0].type.name} width="100px" />
         </Tooltip>
-        <Tooltip 
-        disableFocusListener
-         disableTouchListener 
-        title={<TypeEffect type1={pokemon.types[0].type.name} type2={pokemon.types[1].type.name} />}>
-          <img src={typeText2} alt={pokemon.types[1].type.name} width="10%" />
+        <Tooltip
+          disableFocusListener
+          disableTouchListener
+          title={<TypeEffect type1={pokemon.types[0].type.name} type2={pokemon.types[1].type.name} />}>
+          <img src={typeText2} alt={pokemon.types[1].type.name} width="100px" />
         </Tooltip>
 
       </>)
     }
 
     return (
-    <Tooltip 
-    disableFocusListener 
-    disableTouchListener 
-    title={<TypeEffect type1={pokemon.types[0].type.name}/>}>
-      <img style={{ marginLeft: '80px' }} src={typeText1} alt={pokemon.types[0].type.name} width="10%" />
-    </Tooltip>)
+      <Tooltip
+        disableFocusListener
+        disableTouchListener
+        title={<TypeEffect type1={pokemon.types[0].type.name} />}>
+        <img style={{ marginLeft: '120px' }} src={typeText1} alt={pokemon.types[0].type.name} width="100px" />
+      </Tooltip>)
   }
 
   return (
@@ -108,12 +109,14 @@ export default function MoreDetails({ pokemon, typeList, itemsList }) {
             component="img"
             height="200"
             image={pokemon.sprites.front_default}
-            style={{ width: '25%', height: 'auto', marginTop: "20px", marginLeft: "20px" }}
+            style={{ width: '300px', height: 'auto', marginTop: "20px", marginLeft: "20px" }}
             alt={pokemon.name}
           />
-          <Box display='flex' flexDirection='column' alignItems='center' marginTop="20px">
+          <Box display='flex' flexDirection='column' alignItems='center' marginTop="60px">
             <Select dataList={pokemon.abilities} data="ability" referenceComplete='false' />
-            <Select dataList={typeList} data="tera-type" referenceComplete='true' />
+           
+              <Select dataList={typeList} data="tera-type" referenceComplete='true' />
+           
             <Select dataList={itemsList} data="item" referenceComplete='true' />
           </Box>
           <Box display='flex' flexDirection='column' alignItems='center' marginTop="20px">
@@ -126,7 +129,7 @@ export default function MoreDetails({ pokemon, typeList, itemsList }) {
 
 
         <CardContent sx={{ backgroundColor: "pink" }}>
-          {typeHandler()}
+        {typeHandler()}
 
           <Divider />
           <h2>Stats:</h2>

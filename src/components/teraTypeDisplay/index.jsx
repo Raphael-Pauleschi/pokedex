@@ -20,15 +20,15 @@ const TeraTypeDisplay = ({selected}) =>{
     console.log(selected);
    var typeText = "/types/" + teraData + ".png";
    return(
-    <p>
+    <div>
      {teraData ?
     <Tooltip 
         disableFocusListener
          disableTouchListener 
         title={<TypeEffect type1={teraData} />}>
-          <img src={typeText} alt={teraData} width="10%" />
-        </Tooltip> : null}
-    </p>
+          <img src={typeText} alt={teraData} width="100px" />
+        </Tooltip> : <img src="/types/none.png" alt="No type" width="100px" />}
+    </div>
    
 
    )
