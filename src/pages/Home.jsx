@@ -9,11 +9,10 @@ import getItems from "../script/getItems";
 export const Home = () => {
     const typeList = getType();
     const itemsList = getItems();
-    const pokemonIds = [1, 2, 3, 4, 5, 6];
+    const pokemonIds = [1, 2];
 
-
+/* Normal Return
     return (
-
         <div>
             <Navbar />
             <br></br>
@@ -26,8 +25,22 @@ export const Home = () => {
                 ))}
             </Grid>
 
+        </div>
+    )*/
 
-
+    //Test Retur
+    return (
+        <div>
+            <Navbar />
+            <br></br>
+            <Grid container spacing={3}>
+                {pokemonIds.map(id => (
+                    <Grid item xs={12} sm={12} md={12} key={id}>
+                        <PokemonInfo key={id} typeList={typeList} itemsList={itemsList} 
+                        />
+                    </Grid>
+                ))}
+            </Grid>
 
         </div>
     )

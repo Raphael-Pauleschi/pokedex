@@ -1,8 +1,5 @@
 import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import { Box } from '@mui/material';
+import { Box, Card,  CardContent , CardMedia} from '@mui/material';
 import Select from '../Select';
 
 export default function PokeCard({ pokemon, typeList, itemsList }) {
@@ -19,17 +16,12 @@ export default function PokeCard({ pokemon, typeList, itemsList }) {
     }
     return (<img style={{ marginLeft: '80px' }} src={typeText1} alt={pokemon.types[0].type.name} width="20%" />)
   }
-  console.log(pokemon);
-  /*
-    const ablityHandler = () => {
-      if(pokemon.abilities[0].name === pokemon.abilities[1].name)
-      return (<Select dataList={pokemon.abilities[0]} data="ability" />)
-      else
-      return (<Select dataList={pokemon.abilities} data="ability" />)
-    }
-  */
+
   return (
-    <Card sx={{ maxWidth: 545  }} style={{marginLeft: "60px", marginTop:"20px"}}>
+    <Card 
+    sx={{ maxWidth: 545  }} 
+    style={{marginLeft: "60px", marginTop:"20px"}}
+    >
       <Box sx={{ backgroundColor: "pink" }}
         display="flex"
         justifyContent="space-between"

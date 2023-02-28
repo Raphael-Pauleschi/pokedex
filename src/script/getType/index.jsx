@@ -6,7 +6,7 @@ const getType = () =>{
 
     useEffect(() => {
         const fetchtypeList = async () => {
-            const response = await axios.get('https://pokeapi.co/api/v2/type?limit=17');
+            const response = await axios.get('https://pokeapi.co/api/v2/type?limit=18');
             const data = response.data.results;
             setTypeList(data);
         };

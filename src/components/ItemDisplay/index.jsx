@@ -23,7 +23,12 @@ const Itemdisplay = ({selected}) => {
        
         )
     }else{
-        return null;
+        return(
+            <p> 
+                <img  style={{ marginRight: "200px"}} src="placeholder.png" alt="no item"  width="30" height="30"/>
+            </p>
+       
+        )
     }
 }
 

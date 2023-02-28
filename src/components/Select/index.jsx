@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Itemdisplay from '../ItemDisplay';
+import TeraTypeDisplay from '../TeraTypeDisplay';
 
 const Select = ({ dataList, data, referenceComplete }) => {
     const [selected, setSelected] = useState('');
@@ -18,17 +19,14 @@ const Select = ({ dataList, data, referenceComplete }) => {
         return textReceived.replace("held", " ");
     }
 
-    if (data === "item") {
-        console.log("HEY", dataList);
-    }
     return (
         <Box
             component="form"
             sx={{
                 '& .MuiTextField-root': { m: 1, width: '25ch' },
             }}
-            noValidatea
-            utoComplete="off"
+            noValidate
+            utocomplete="off"
         >
 
             <TextField
@@ -37,14 +35,15 @@ const Select = ({ dataList, data, referenceComplete }) => {
                 label={data}
                 value={selected}
                 onChange={handleChange}
-                defaultValue=" "
                 SelectProps={{
                     native: true,
                 }}
             >
                 <option value=""></option>
                 {dataList.map((index) => (
-                    <option key={index} value={referenceComplete === 'true' ? index.url : index[data].url}>
+                    <option key={index} value={referenceComplete === 'true' 
+                    ? index.url : 
+                    index[data].url}>
                         {referenceComplete === 'true' ? formatString(index.name) : formatString(index[data].name)}
                     </option>
 
@@ -52,7 +51,8 @@ const Select = ({ dataList, data, referenceComplete }) => {
 
             </TextField>
 
-            {data === 'item' ? <Itemdisplay selected={selected} /> : null}
+            {data === 'item' && <Itemdisplay selected={selected} /> }
+            {data === 'tera-type' && <TeraTypeDisplay selected={selected} /> }
         </Box>
 
     )
