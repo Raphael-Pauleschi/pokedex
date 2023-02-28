@@ -51,8 +51,8 @@ const Select = ({ dataList, data, referenceComplete }) => {
 
             </TextField>
 
-            {data === 'item' ? <Itemdisplay selected={selected} /> : null}
-            {data === 'tera-type' ? <TeraTypeDisplay selected={selected} /> : null}
+            {data === 'item' && <Itemdisplay selected={selected} /> }
+            {data === 'tera-type' && <TeraTypeDisplay selected={selected} /> }
         </Box>
 
     )
