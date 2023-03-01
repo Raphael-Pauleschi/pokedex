@@ -6,9 +6,7 @@ import { Box, Grid } from '@mui/material';
 import Select from '../Select';
 import { TextField } from '@mui/material';
 import Divider from '@mui/material/Divider';
-import Tooltip from '@mui/material/Tooltip';
-import DualTypeEffect from '../typeEffect/DualTypeEffect'; 
-import MonoTypeEffect from '../typeEffect/MonoTypeEffect';
+import TypeToolTip from '../TypeToolTip';
 
 
 export default function MoreDetails({ pokemon, typeList, itemsList }) {
@@ -17,6 +15,7 @@ export default function MoreDetails({ pokemon, typeList, itemsList }) {
   const statname = ["HP ", "Atk", "Def", "SpA", "SpD", "Spe"];
   const limitEv = 508;
   const remainEv = 508;
+  console.log("My type is",pokemon.types[0].type.name);
 
   const handleStatChange = (event, typeValue, id) => {
     const value = parseInt(event.target.value)
@@ -62,38 +61,6 @@ export default function MoreDetails({ pokemon, typeList, itemsList }) {
     return trueStat;
   }
 
-  const typeHandler = () => {
-    var typeText1 = "/types/" + pokemon.types[0].type.name + ".png";
-
-    if (pokemon.types[1]) {
-      var typeText2 = "/types/" + pokemon.types[1].type.name + ".png";
-      console.log(pokemon.types[1].type.name);
-      return (<>
-        <Tooltip
-          disableFocusListener
-          disableTouchListener
-          title={<DualTypeEffect type1={pokemon.types[0].type.name} type2={pokemon.types[1].type.name} />}>
-          <img style={{ marginLeft: '60px' }} src={typeText1} alt={pokemon.types[0].type.name} width="100px" />
-        </Tooltip>
-        <Tooltip
-          disableFocusListener
-          disableTouchListener
-          title={<DualTypeEffect type1={pokemon.types[0].type.name} type2={pokemon.types[1].type.name} />}>
-          <img src={typeText2} alt={pokemon.types[1].type.name} width="100px" />
-        </Tooltip>
-
-      </>)
-    }
-
-    return (
-      <Tooltip
-        disableFocusListener
-        disableTouchListener
-        title={<MonoTypeEffect type1={pokemon.types[0].type.name} />}>
-        <img style={{ marginLeft: '120px' }} src={typeText1} alt={pokemon.types[0].type.name} width="100px" />
-      </Tooltip>)
-  }
-
   return (
     <div>
       <Card
@@ -130,7 +97,10 @@ export default function MoreDetails({ pokemon, typeList, itemsList }) {
 
 
         <CardContent sx={{ backgroundColor: "pink" }}>
-        {typeHandler()}
+
+        {pokemon.types[1] ? <TypeToolTip type1={pokemon.types[0].type.name} type2={pokemon.types[1].type.name}/> :
+        <TypeToolTip type1={pokemon.types[0].type.name} /> }
+        
 
           <Divider />
           <h2>Stats:</h2>

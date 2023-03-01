@@ -1,21 +1,9 @@
 import * as React from 'react';
 import { Box, Card,  CardContent , CardMedia} from '@mui/material';
 import Select from '../Select';
+import TypeToolTip from '../TypeToolTip';
 
 export default function PokeCard({ pokemon, typeList, itemsList }) {
-  const typeHandler = () => {
-    var typeText1 = "/types/" + pokemon.types[0].type.name + ".png";
-
-    if (pokemon.types[1]) {
-      var typeText2 = "/types/" + pokemon.types[1].type.name + ".png";
-      return (<>
-        <img style={{ marginLeft: '40px' }} src={typeText1} alt={pokemon.types[0].type.name} width="20%" />
-        <img src={typeText2} alt={pokemon.types[1].type.name} width="20%" />
-
-      </>)
-    }
-    return (<img style={{ marginLeft: '80px' }} src={typeText1} alt={pokemon.types[0].type.name} width="20%" />)
-  }
 
   return (
     <Card 
@@ -44,7 +32,8 @@ export default function PokeCard({ pokemon, typeList, itemsList }) {
 
 
       <CardContent sx={{ backgroundColor: "pink" }}>
-        {typeHandler()}
+      {pokemon.types[1] ? <TypeToolTip type1={pokemon.types[0].type.name} type2={pokemon.types[1].type.name}/> :
+        <TypeToolTip type1={pokemon.types[0].type.name} /> }
         <Box display="flex" justifyContent="space-between" alignItens="center">
           <Select dataList={pokemon.moves} data="move" referenceComplete='false' />
           <Select dataList={pokemon.moves} data="move" referenceComplete='false'/>
