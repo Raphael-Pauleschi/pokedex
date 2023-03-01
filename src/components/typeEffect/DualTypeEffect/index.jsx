@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import axios from 'axios';
 
-export default function TypeEffect({ type1, type2 }) {
+export default function DualTypeEffect({ type1, type2 }) {
     const [infoType1, setInfoType1] = useState([]);
     const [infoType2, setInfoType2] = useState([]);
     const [quadrupleDamageFrom, setQuadrupleDamageFrom] = useState([]);
@@ -12,7 +10,6 @@ export default function TypeEffect({ type1, type2 }) {
     const [quarterDamageFrom, setQuarterDamageFrom] = useState([]);
     const [noDamageFrom, setNoDamageFrom] = useState([]);
     
-    if(type2){
     useEffect(() => {
         const fetchTypeInfo = async () => {
             try {
@@ -101,39 +98,7 @@ export default function TypeEffect({ type1, type2 }) {
             damageHandle();
         }
     }, [infoType1, infoType2]);
-    }else{
-            useEffect(() => {
-                const fetchTypeInfo = async () => {
-                    try {
-                        const response1 = await axios.get(`https://pokeapi.co/api/v2/type/${type1}`);
-                        const data1 = response1.data.damage_relations;
-                        setInfoType1(data1);
-        
-                    } catch (error) {
-                        console.log(error);
-                    }
-                };
-        
-                fetchTypeInfo();
-            }, [type1]);
-        
-            useEffect(() => {
-                const damageHandle = () => {
-                    console.log(type1);
-                    const newDoubleDamageFromType1 = infoType1.double_damage_from.map(relation => relation.name);
-                    const newHalfDamageFromType1 = infoType1.half_damage_from.map(relation => relation.name);
-                    const newNoDamageFromType1 = infoType1.no_damage_from.map(relation => relation.name);
-        
-                   
-                        setDoubleDamageFrom(newDoubleDamageFromType1);
-                        console.log(doubleDamageFrom);
-                        setHalfDamageFrom(newHalfDamageFromType1);
-                        setNoDamageFrom(newNoDamageFromType1);
-                          
-            };if (infoType1.double_damage_from) {
-                damageHandle();
-            }  }, [infoType1]);
-    }
+    
 
 
     function typeShow(typeArray) {

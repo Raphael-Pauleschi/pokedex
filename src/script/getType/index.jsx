@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const getType = () =>{
+const GetType = () =>{
     const [typeList, setTypeList] = useState([]);
 
     useEffect(() => {
@@ -16,4 +16,4 @@ const getType = () =>{
     return typeList;
 }
 
-export default getType;
+export default GetType;

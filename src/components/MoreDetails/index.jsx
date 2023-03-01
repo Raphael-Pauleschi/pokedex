@@ -5,9 +5,10 @@ import CardMedia from '@mui/material/CardMedia';
 import { Box, Grid } from '@mui/material';
 import Select from '../Select';
 import { TextField } from '@mui/material';
-import TypeEffect from '../typeEffect';
 import Divider from '@mui/material/Divider';
 import Tooltip from '@mui/material/Tooltip';
+import DualTypeEffect from '../typeEffect/DualTypeEffect'; 
+import MonoTypeEffect from '../typeEffect/MonoTypeEffect';
 
 
 export default function MoreDetails({ pokemon, typeList, itemsList }) {
@@ -71,13 +72,13 @@ export default function MoreDetails({ pokemon, typeList, itemsList }) {
         <Tooltip
           disableFocusListener
           disableTouchListener
-          title={<TypeEffect type1={pokemon.types[0].type.name} type2={pokemon.types[1].type.name} />}>
+          title={<DualTypeEffect type1={pokemon.types[0].type.name} type2={pokemon.types[1].type.name} />}>
           <img style={{ marginLeft: '60px' }} src={typeText1} alt={pokemon.types[0].type.name} width="100px" />
         </Tooltip>
         <Tooltip
           disableFocusListener
           disableTouchListener
-          title={<TypeEffect type1={pokemon.types[0].type.name} type2={pokemon.types[1].type.name} />}>
+          title={<DualTypeEffect type1={pokemon.types[0].type.name} type2={pokemon.types[1].type.name} />}>
           <img src={typeText2} alt={pokemon.types[1].type.name} width="100px" />
         </Tooltip>
 
@@ -88,7 +89,7 @@ export default function MoreDetails({ pokemon, typeList, itemsList }) {
       <Tooltip
         disableFocusListener
         disableTouchListener
-        title={<TypeEffect type1={pokemon.types[0].type.name} />}>
+        title={<MonoTypeEffect type1={pokemon.types[0].type.name} />}>
         <img style={{ marginLeft: '120px' }} src={typeText1} alt={pokemon.types[0].type.name} width="100px" />
       </Tooltip>)
   }

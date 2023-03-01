@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const getItems = () => {
+const GetItems = () => {
   const [items, setItems] = useState(null);
   useEffect(() => {
     const urls = ['https://pokeapi.co/api/v2/item-category/4',
@@ -28,4 +28,4 @@ const getItems = () => {
 
 }
 
-export default getItems;
+export default GetItems;

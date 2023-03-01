@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
-import TypeEffect from '../typeEffect';
+import MonoTypeEffect from '../typeEffect/MonoTypeEffect';
 import { Tooltip } from '@mui/material';
 
 const TeraTypeDisplay = ({selected}) =>{
@@ -25,7 +25,7 @@ const TeraTypeDisplay = ({selected}) =>{
     <Tooltip 
         disableFocusListener
          disableTouchListener 
-        title={<TypeEffect type1={teraData} />}>
+        title={<MonoTypeEffect type1={teraData} />}>
           <img src={typeText} alt={teraData} width="100px" />
         </Tooltip> : <img src="/types/none.png" alt="No type" width="100px" />}
     </div>
