@@ -48,7 +48,7 @@ export default function MoreDetails({ pokemon, typeList, itemsList }) {
     //The Hp stat is calculated different
     if (id === 0) {
       //The pokemon Shedinja will always have 1 HP
-      if (pokemon === "shedinja")
+      if (pokemon.species.name === "shedinja")
         trueStat = 1;
       else
         trueStat += 110;
