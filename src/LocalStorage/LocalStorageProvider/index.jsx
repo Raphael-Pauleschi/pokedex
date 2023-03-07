@@ -17,6 +17,7 @@ export default function LocalStorageProvider({ children }) {
 
   const addPokemon = (pokemon) => {
     setTeam([...team, pokemon]);
+    console.log(pokemon);
   };
 
   const removePokemon = (pokemon) => {
