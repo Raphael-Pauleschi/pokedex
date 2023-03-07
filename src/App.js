@@ -1,14 +1,14 @@
 import './App.css';
-import AppContext from "./AppContext";
+import  LocalStorageProvider  from './LocalStorage/LocalStorageProvider';
 import React from 'react'
 import { Home } from './pages/Home';
 
 function App() {
   
   return (
-    <AppContext.Provider value={[state, setState]}>
+    <LocalStorageProvider>
       <Home />
-    </AppContext.Provider>);
+    </LocalStorageProvider>);
 }
 
 export default App;
