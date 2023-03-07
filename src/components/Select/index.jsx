@@ -4,18 +4,20 @@ import TextField from '@mui/material/TextField';
 import Itemdisplay from '../ItemDisplay';
 import TeraTypeDisplay from '../TeraTypeDisplay';
 
-const Select = ({ dataList, data, referenceComplete }) => {
+const Select = ({ dataList, data, referenceComplete, onSelect }) => {
     const [selected, setSelected] = useState('');
 
     const handleChange = (event) => {
-        setSelected(event.target.value);
+        const selectedValue = event.target.value;
+        setSelected(selectedValue);
+       onSelect( selectedValue);
     }
 
     const formatString = (textReceived) => {
         textReceived = textReceived.charAt(0)
-            .toUpperCase() 
+            .toUpperCase()
             + textReceived.slice(1);
-        textReceived = textReceived.replace(/-/g, " ");     
+        textReceived = textReceived.replace(/-/g, " ");
         return textReceived.replace("held", " ");
     }
 
@@ -41,18 +43,20 @@ const Select = ({ dataList, data, referenceComplete }) => {
             >
                 <option value=""></option>
                 {dataList.map((index) => (
-                    <option key={index} value={referenceComplete === 'true' 
-                    ? index.url : 
-                    index[data].url}>
-                        {referenceComplete === 'true' ? formatString(index.name) : formatString(index[data].name)}
+                    <option
+                        key={index}
+                        value={referenceComplete ? index.name : index[data].name}
+                    >
+                        {referenceComplete
+                            ? formatString(index.name)
+                            : formatString(index[data].name)}
                     </option>
-
                 ))}
 
             </TextField>
 
-            {data === 'item' && <Itemdisplay selected={selected} /> }
-            {data === 'tera-type' && <TeraTypeDisplay selected={selected} /> }
+            {data === 'item' && <Itemdisplay selected={selected} />}
+            {data === 'tera-type' && <TeraTypeDisplay selected={selected} />}
         </Box>
 
     )

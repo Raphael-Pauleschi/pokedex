@@ -81,17 +81,17 @@ export default function MoreDetails({ pokemon, typeList, itemsList }) {
             alt={pokemon.name}
           />
           <Box display='flex' flexDirection='column' alignItems='center' marginTop="60px">
-            <Select dataList={pokemon.abilities} data="ability" referenceComplete='false' />
+            <Select dataList={pokemon.abilities} data="ability" referenceComplete={false} />
            
-              <Select dataList={typeList} data="tera-type" referenceComplete='true' />
+              <Select dataList={typeList} data="tera-type" referenceComplete={true} />
            
-            <Select dataList={itemsList} data="item" referenceComplete='true' />
+            <Select dataList={itemsList} data="item" referenceComplete={true} />
           </Box>
           <Box display='flex' flexDirection='column' alignItems='center' marginTop="20px">
-            <Select dataList={pokemon.moves} data="move" referenceComplete='false' />
-            <Select dataList={pokemon.moves} data="move" referenceComplete='false' />
-            <Select dataList={pokemon.moves} data="move" referenceComplete='false' />
-            <Select dataList={pokemon.moves} data="move" referenceComplete='false' />
+            <Select dataList={pokemon.moves} data="move" referenceComplete={false} />
+            <Select dataList={pokemon.moves} data="move" referenceComplete={false} />
+            <Select dataList={pokemon.moves} data="move" referenceComplete={false} />
+            <Select dataList={pokemon.moves} data="move" referenceComplete={false} />
           </Box>
         </Box>
 

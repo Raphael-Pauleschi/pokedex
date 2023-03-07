@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Box, Card, CardContent, CardMedia } from '@mui/material';
 import Select from '../Select';
 import TypeToolTip from '../TypeToolTip';
@@ -8,8 +8,20 @@ import { LocalStorageContext } from '../../LocalStorage/LocalStorageContext';
 
 export default function PokeCard({ pokemon, typeList, itemsList }) {
   const { addPokemon } = useContext(LocalStorageContext);
+  const [ability, setAbility] = useState("");
+  const [type, setType] = useState("");
+  const [item, setItem] = useState("");
+  const [move1, setMove1] = useState("");
+  const [move2, setMove2] = useState("");
+  const [move3, setMove3] = useState("");
+  const [move4, setMove4] = useState("");
+
   const handleAddtoTeam = () => {
-    addPokemon(pokemon);
+    const moveset = { move1, move2, move3, move4 };
+    const pokemonName = pokemon.name;
+    const pokemonData = { name: pokemonName, ability, type, item, moveset };
+    console.log("Data :",pokemonData);
+    addPokemon(pokemonData);
   }
 
   return (
@@ -31,9 +43,9 @@ export default function PokeCard({ pokemon, typeList, itemsList }) {
           alt={pokemon.name}
         />
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: "20px" }}>
-          <Select dataList={pokemon.abilities} data="ability" referenceComplete='false' />
-          <Select dataList={typeList} data="tera-type" referenceComplete='true' />
-          <Select dataList={itemsList} data="item" referenceComplete='true' />
+          <Select dataList={pokemon.abilities} data="ability" referenceComplete={false} onSelect={setAbility} />
+          <Select dataList={typeList} data="tera-type" referenceComplete={true} onSelect={setType} />
+          <Select dataList={itemsList} data="item" referenceComplete={true} onSelect={setItem} />
         </Box>
       </Box>
 
@@ -42,12 +54,12 @@ export default function PokeCard({ pokemon, typeList, itemsList }) {
         {pokemon.types[1] ? <TypeToolTip type1={pokemon.types[0].type.name} type2={pokemon.types[1].type.name} /> :
           <TypeToolTip type1={pokemon.types[0].type.name} />}
         <Box display="flex" justifyContent="space-between" alignItens="center">
-          <Select dataList={pokemon.moves} data="move" referenceComplete='false' />
-          <Select dataList={pokemon.moves} data="move" referenceComplete='false' />
+          <Select dataList={pokemon.moves} data="move" referenceComplete={false} onSelect={setMove1} />
+          <Select dataList={pokemon.moves} data="move" referenceComplete={false} onSelect={setMove2} />
         </Box>
         <Box display="flex" justifyContent="space-between" alignItens="center">
-          <Select dataList={pokemon.moves} data="move" referenceComplete='false' />
-          <Select dataList={pokemon.moves} data="move" referenceComplete='false' />
+          <Select dataList={pokemon.moves} data="move" referenceComplete={false} onSelect={setMove3} />
+          <Select dataList={pokemon.moves} data="move" referenceComplete={false} onSelect={setMove4} />
         </Box>
         <button onClick={handleAddtoTeam}>Add to team</button>
       </CardContent>

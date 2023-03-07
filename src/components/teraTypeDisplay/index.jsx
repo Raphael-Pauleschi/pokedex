@@ -8,7 +8,7 @@ const TeraTypeDisplay = ({selected}) =>{
 
     useEffect(() =>{
         if (selected){
-            axios.get(selected).then(response => {
+            axios.get(`https://pokeapi.co/api/v2/type/${selected}`).then(response => {
                 setTeraData(response.data.name);
             })
             .catch(error => console.log(error));

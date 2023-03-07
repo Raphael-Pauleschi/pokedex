@@ -6,7 +6,7 @@ const Itemdisplay = ({selected}) => {
 
     useEffect(() =>{
         if (selected){
-            axios.get(selected).then(response => {
+            axios.get(`https://pokeapi.co/api/v2/item/${selected}`).then(response => {
                 setItemData(response.data);
             })
             .catch(error => console.log(error));
