@@ -1,13 +1,12 @@
-import * as React from 'react';
-import { useContext, useState } from "react";
+import React,{ useContext, useState } from "react";
 import { Box, Card, CardContent, CardMedia } from '@mui/material';
 import Select from '../Select';
 import TypeToolTip from '../TypeToolTip';
 import { LocalStorageContext } from '../../LocalStorage/LocalStorageContext';
 
 
-export default function PokeCard({ pokemon, typeList, itemsList }) {
-  const { addPokemon } = useContext(LocalStorageContext);
+export default function PokeCard({index, pokemon, typeList, itemsList }) {
+  const { updatePokemon } = useContext(LocalStorageContext);
   const [ability, setAbility] = useState("");
   const [type, setType] = useState("");
   const [item, setItem] = useState("");
@@ -16,12 +15,13 @@ export default function PokeCard({ pokemon, typeList, itemsList }) {
   const [move3, setMove3] = useState("");
   const [move4, setMove4] = useState("");
 
-  const handleAddtoTeam = () => {
+  const handleUpdatetoTeam = () => {
+    console.log(index);
     const moveset = { move1, move2, move3, move4 };
     const pokemonName = pokemon.name;
-    const pokemonData = { name: pokemonName, ability, type, item, moveset };
+    const pokemonData = { id:index,name: pokemonName, ability, type, item, moveset };
     console.log("Data :",pokemonData);
-    addPokemon(pokemonData);
+    updatePokemon(pokemonData);
   }
 
   return (
@@ -61,7 +61,7 @@ export default function PokeCard({ pokemon, typeList, itemsList }) {
           <Select dataList={pokemon.moves} data="move" referenceComplete={false} onSelect={setMove3} />
           <Select dataList={pokemon.moves} data="move" referenceComplete={false} onSelect={setMove4} />
         </Box>
-        <button onClick={handleAddtoTeam}>Add to team</button>
+        <button onClick={handleUpdatetoTeam}>Update</button>
       </CardContent>
     </Card>
   );

@@ -1,10 +1,11 @@
 import { Container } from "@mui/system";
 import { Grid } from "@mui/material";
-import React from 'react';
+import React, {useContext} from 'react';
 import Navbar from '../components/Navbar';
-import PokemonInfo from "../components/PokeInfo";
+import PokeInfo from "../components/PokeInfo";
 import getType from "../script/getType";
 import getItems from "../script/getItems";
+import { LocalStorageContext } from "../LocalStorage/LocalStorageContext";
 
 export const Home = () => {
     const typeList = getType();
@@ -29,6 +30,7 @@ export const Home = () => {
     )*/
 
     //Test Retur
+    /*
     return (
         <div>
             <Navbar />
@@ -44,4 +46,21 @@ export const Home = () => {
 
         </div>
     )
+    */
+    const { team } = React.useContext(LocalStorageContext);
+
+  return (
+    <div>
+      <Navbar/>
+      <div className="team">
+        {[0, 1, 2, 3, 4, 5].map((index) => {
+          return (
+            <div key={index}>
+              <PokeInfo index={index} key={index} typeList={typeList} itemsList={itemsList} />
+            </div>
+          );
+        })}
+      </div>
+    </div>
+    );
 }

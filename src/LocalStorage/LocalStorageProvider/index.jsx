@@ -17,6 +17,7 @@ export default function LocalStorageProvider({ children }) {
 
   const addPokemon = (pokemon) => {
     setTeam([...team, pokemon]);
+    
     console.log(pokemon);
   };
 
@@ -30,7 +31,7 @@ export default function LocalStorageProvider({ children }) {
     );
     setTeam(updatedTeam);
   };
-
+  console.log(team);
   return (
     <LocalStorageContext.Provider
       value={{ team, addPokemon, removePokemon, updatePokemon }}
