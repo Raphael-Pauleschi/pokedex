@@ -42,9 +42,9 @@ export default function PokeCard({ index, pokemon, typeList, itemsList }) {
           alt={pokemon.name}
         />
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: "20px" }}>
-          <Select dataList={pokemon.abilities} data="ability" referenceComplete={false} onSelect={setAbility} />
-          <Select dataList={typeList} data="tera-type" referenceComplete={true} onSelect={setType} />
-          <Select dataList={itemsList} data="item" referenceComplete={true} onSelect={setItem} />
+          <Select index={index}dataList={pokemon.abilities} data="ability" referenceComplete={false} onSelect={setAbility} />
+          <Select index={index}dataList={typeList} data="tera-type" referenceComplete={true} onSelect={setType} />
+          <Select index={index}dataList={itemsList} data="item" referenceComplete={true} onSelect={setItem} />
         </Box>
       </Box>
 
@@ -53,12 +53,12 @@ export default function PokeCard({ index, pokemon, typeList, itemsList }) {
         {pokemon.types[1] ? <TypeToolTip type1={pokemon.types[0].type.name} type2={pokemon.types[1].type.name} /> :
           <TypeToolTip type1={pokemon.types[0].type.name} />}
         <Box display="flex" justifyContent="space-between" alignItens="center">
-          <Select dataList={pokemon.moves} data="move" referenceComplete={false} onSelect={setMove1} />
-          <Select dataList={pokemon.moves} data="move" referenceComplete={false} onSelect={setMove2} />
+          <Select index={index} dataList={pokemon.moves} data="move" referenceComplete={false} onSelect={setMove1} />
+          <Select index={index} dataList={pokemon.moves} data="move" referenceComplete={false} onSelect={setMove2} />
         </Box>
         <Box display="flex" justifyContent="space-between" alignItens="center">
-          <Select dataList={pokemon.moves} data="move" referenceComplete={false} onSelect={setMove3} />
-          <Select dataList={pokemon.moves} data="move" referenceComplete={false} onSelect={setMove4} />
+          <Select index={index}dataList={pokemon.moves} data="move" referenceComplete={false} onSelect={setMove3} />
+          <Select index={index} dataList={pokemon.moves} data="move" referenceComplete={false} onSelect={setMove4} />
         </Box>
 
 

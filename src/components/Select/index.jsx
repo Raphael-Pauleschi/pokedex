@@ -1,75 +1,65 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import { LocalStorageContext } from '../../LocalStorage/LocalStorageContext';
 import Itemdisplay from '../ItemDisplay';
 import TeraTypeDisplay from '../TeraTypeDisplay';
-import { LocalStorageContext } from '../../LocalStorage/LocalStorageContext';
 
-const Select = ({ dataList, data, referenceComplete, onSelect }) => {
-    const [selected, setSelected] = useState('');
-    const {team} = useContext(LocalStorageContext);
+const Select = ({ dataList, data, referenceComplete, onSelect, index }) => {
+  const { team } = useContext(LocalStorageContext);
+  const [storedSelect, setStoredSelect] = useState(team[index][data]);
 
-    const handleChange = (event) => {
-        const selectedValue = event.target.value;
-        setSelected(selectedValue);
-       onSelect( selectedValue);
-    }
+  useEffect(() => {
+    setStoredSelect(team[index][data]);
+  }, [index, data, team]);
 
-    const formatString = (textReceived) => {
-        textReceived = textReceived.charAt(0)
-            .toUpperCase()
-            + textReceived.slice(1);
-        textReceived = textReceived.replace(/-/g, " ");
-        return textReceived.replace("held", " ");
-    }
+  const handleChange = (event) => {
+    const selectedValue = event.target.value;
+    setStoredSelect(selectedValue);
+    onSelect(selectedValue);
+  };
 
-    useEffect(()=>{
-    const storedSelected = team.find((pokemon)=> setSelected(pokemon[data]));
-    
-    if (storedSelected){
-        setSelected(storedSelected[data]);
-       
-    }},[data,team])
+  const formatString = (textReceived) => {
+    textReceived = textReceived.charAt(0).toUpperCase() + textReceived.slice(1);
+    textReceived = textReceived.replace(/-/g, ' ');
+    return textReceived.replace('held', ' ');
+  };
 
-    return (
-        <Box
-            component="form"
-            sx={{
-                '& .MuiTextField-root': { m: 1, width: '25ch' },
-            }}
-            noValidate
-            utocomplete="off"
-        >
-
-            <TextField
-                id="outlined-select-currency-native"
-                select
-                label={data}
-                value={selected}
-                onChange={handleChange}
-                SelectProps={{
-                    native: true,
-                }}
-            >
-                <option value=""></option>
-                {dataList.map((index) => (
-                    <option
-                        key={index}
-                        value={referenceComplete ? index.name : index[data].name}
-                    >
-                        {referenceComplete
-                            ? formatString(index.name)
-                            : formatString(index[data].name)}
-                    </option>
-                ))}
-
-            </TextField>
-
-            {data === 'item' && <Itemdisplay selected={selected} />}
-            {data === 'tera-type' && <TeraTypeDisplay selected={selected} />}
-        </Box>
-
-    )
-}
+  return (
+    <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      utocomplete="off"
+    >
+      <TextField
+        id={`outlined-select-currency-native-${data}`}
+        select
+        label={data}
+        value={storedSelect}
+        onChange={handleChange}
+        SelectProps={{
+          native: true,
+        }}
+      >
+        <option value=""></option>
+        {dataList.map((index) => (
+          <option
+            key={index}
+            value={referenceComplete ? index.name : index[data].name}
+          >
+            {referenceComplete
+              ? formatString(index.name)
+              : formatString(index[data].name)}
+          </option>
+        ))}
+      </TextField>
+      {data === 'item' && <Itemdisplay selected={storedSelect} />}
+            {data === 'tera-type' && <TeraTypeDisplay selected={storedSelect} />}
+    </Box>
+  );
+};
 
 export default Select;

@@ -93,15 +93,15 @@ export default function MoreDetails({ index, pokemon, typeList, itemsList }) {
             alt={pokemon.name}
           />
           <Box display='flex' flexDirection='column' alignItems='center' marginTop="60px">
-            <Select dataList={pokemon.abilities} data="ability" referenceComplete={false} onSelect={setAbility} />
-            <Select dataList={typeList} data="tera-type" referenceComplete={true} onSelect={setType} />
-            <Select dataList={itemsList} data="item" referenceComplete={true} onSelect={setItem}/>
+            <Select index={index} dataList={pokemon.abilities} data="ability" referenceComplete={false} onSelect={setAbility} />
+            <Select index={index} dataList={typeList} data="tera-type" referenceComplete={true} onSelect={setType} />
+            <Select index={index} dataList={itemsList} data="item" referenceComplete={true} onSelect={setItem}/>
           </Box>
           <Box display='flex' flexDirection='column' alignItems='center' marginTop="20px">
-            <Select dataList={pokemon.moves} data="move" referenceComplete={false} onSelect={setMove1}/>
-            <Select dataList={pokemon.moves} data="move" referenceComplete={false} onSelect={setMove2}/>
-            <Select dataList={pokemon.moves} data="move" referenceComplete={false} onSelect={setMove3}/>
-            <Select dataList={pokemon.moves} data="move" referenceComplete={false} onSelect={setMove4}/>
+            <Select  index={index} dataList={pokemon.moves} data="move" referenceComplete={false} onSelect={setMove1}/>
+            <Select index={index} dataList={pokemon.moves} data="move" referenceComplete={false} onSelect={setMove2}/>
+            <Select index={index} dataList={pokemon.moves} data="move" referenceComplete={false} onSelect={setMove3}/>
+            <Select  index={index} dataList={pokemon.moves} data="move" referenceComplete={false} onSelect={setMove4}/>
           </Box>
         </Box>
 
