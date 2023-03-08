@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Itemdisplay from '../ItemDisplay';
 import TeraTypeDisplay from '../TeraTypeDisplay';
+import { LocalStorageContext } from '../../LocalStorage/LocalStorageContext';
 
 const Select = ({ dataList, data, referenceComplete, onSelect }) => {
     const [selected, setSelected] = useState('');
+    const {team} = useContext(LocalStorageContext);
 
     const handleChange = (event) => {
         const selectedValue = event.target.value;
@@ -20,6 +22,14 @@ const Select = ({ dataList, data, referenceComplete, onSelect }) => {
         textReceived = textReceived.replace(/-/g, " ");
         return textReceived.replace("held", " ");
     }
+
+    useEffect(()=>{
+    const storedSelected = team.find((pokemon)=> setSelected(pokemon[data]));
+    
+    if (storedSelected){
+        setSelected(storedSelected[data]);
+       
+    }},[data,team])
 
     return (
         <Box

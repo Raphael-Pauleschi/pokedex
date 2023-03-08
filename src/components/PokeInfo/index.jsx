@@ -14,7 +14,7 @@ const PokeInfo = ({ index, typeList, itemsList }) => {
 
   const handleAddtoTeam = () => {
     const moveset = { move1:null, move2:null, move3:null, move4:null };
-    const pokemonData = {id:index, name: pokemonName, ability:null, type:null, item:null, moveset };
+    const pokemonData = {id:index, name: pokemonName, ability:null, "tera-type":null, item:null, moveset };
     console.log("Data :",pokemonData);
     addPokemon(pokemonData, index);
   }
@@ -60,7 +60,7 @@ const PokeInfo = ({ index, typeList, itemsList }) => {
     </button>
 
     {showMoreDetails ? (
-      <MoreDetails pokemon={pokemonInfo} typeList={typeList} itemsList={itemsList} />
+      <MoreDetails index={index} pokemon={pokemonInfo} typeList={typeList} itemsList={itemsList} />
     ) : (
       <PokeCard index={index} pokemon={pokemonInfo} typeList={typeList} itemsList={itemsList} />
     )}

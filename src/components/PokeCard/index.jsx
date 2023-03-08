@@ -19,7 +19,7 @@ export default function PokeCard({ index, pokemon, typeList, itemsList }) {
   const handleUpdatetoTeam = () => {
     const moveset = { move1, move2, move3, move4 };
     const pokemonName = pokemon.name;
-    const pokemonData = { id: index, name: pokemonName, ability, type, item, moveset };
+    const pokemonData = { id: index, name: pokemonName, ability, "tera-type":type, item, moveset };
     updatePokemon(pokemonData);
   }
 
