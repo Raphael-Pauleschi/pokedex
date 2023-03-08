@@ -15,7 +15,7 @@ export default function MoreDetails({ pokemon, typeList, itemsList }) {
   const statname = ["HP ", "Atk", "Def", "SpA", "SpD", "Spe"];
   const limitEv = 508;
   const remainEv = 508;
-  console.log("My type is",pokemon.types[0].type.name);
+
 
   const handleStatChange = (event, typeValue, id) => {
     const value = parseInt(event.target.value)
@@ -65,7 +65,7 @@ export default function MoreDetails({ pokemon, typeList, itemsList }) {
     <div>
       <Card
         sx={{ maxWidth: 1000 }}
-        style={{ marginLeft: "60px", marginTop: "20px" }}
+        style={{ marginLeft: "150px", marginTop: "20px" }}
       >
         <Box sx={{ backgroundColor: "pink" }}
           display="flex"

@@ -24,14 +24,14 @@ export default function MonoTypeEffect({ type1 }) {
 
     useEffect(() => {
         const damageHandle = () => {
-            console.log(type1);
+
             const newDoubleDamageFromType1 = infoType1.double_damage_from.map(relation => relation.name);
             const newHalfDamageFromType1 = infoType1.half_damage_from.map(relation => relation.name);
             const newNoDamageFromType1 = infoType1.no_damage_from.map(relation => relation.name);
 
 
             setDoubleDamageFrom(newDoubleDamageFromType1);
-            console.log(doubleDamageFrom);
+
             setHalfDamageFrom(newHalfDamageFromType1);
             setNoDamageFrom(newNoDamageFromType1);
 

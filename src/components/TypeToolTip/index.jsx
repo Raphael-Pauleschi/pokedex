@@ -6,7 +6,7 @@ import DualTypeEffect from '../typeEffect/DualTypeEffect';
 
 const TypeToolTip = ({type1, type2}) => {
     var typeText1 = "/types/" +type1 + ".png";
-    console.log(type1);
+
     if (type2) {
       var typeText2 = "/types/" + type2 + ".png";
       

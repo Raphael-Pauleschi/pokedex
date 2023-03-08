@@ -74,7 +74,7 @@ export default function DualTypeEffect({ type1, type2 }) {
                     relation1 => newHalfDamageFromType2.some(relation2 => relation1 === relation2)
                 );
                 setQuarterDamageFrom(newQuarterDamageFrom);
-                console.log(quarterDamageFrom);
+     
 
                 setHalfDamageFrom(
                     newHalfDamageFromType1.filter(

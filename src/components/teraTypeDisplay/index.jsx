@@ -17,7 +17,6 @@ const TeraTypeDisplay = ({selected}) =>{
         }
     }, [selected]);
 
-    console.log(selected);
    var typeText = "/types/" + teraData + ".png";
    return(
     <div>
